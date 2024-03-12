@@ -1,5 +1,10 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
+    color: #333333;
+}
+
+h1 {
+    color: #001D5B;
 }
 
 nav {
