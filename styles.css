@@ -8,19 +8,19 @@ h1 {
 }
 
 nav {
-    position: absolute;
-    top: 0;
-    right: 0;
-    display: flex;
-    justify-content: flex-start;
+    width: 100%;
+    display: block;
 }
 
 nav ul {
+    display: flex;
+    justify-content: flex-start;
     list-style-type: none;
     margin: auto;
     padding: 0;
     overflow: hidden;
     background-color: #BAEFFD;
+    width: 100%;
 }
 
 nav li {
