@@ -3,14 +3,17 @@ var svg = d3.select("svg"),
     height = +svg.attr("height");
 
 var nodes = [
-    { id: 1, x: width / 3, y: height / 2 },
-    { id: 2, x: 2 * width / 3, y: height / 2 }
-    // Add more nodes here
+    { id: 1, x: width / 3, y: height / 6 },
+    { id: 2, x: 2 * width / 3, y: height / 6 },
+    { id: 3, x: width / 2, y: height / 3 },
+    { id: 4, x: width, y: height }
 ];
 
 var links = [
-    { source: 1, target: 2 }
-    // Add more links here
+    { source: 1, target: 2 },
+    { source: 1, target: 4 },
+    { source: 1, target: 3 },
+    { source: 2, target: 3 }
 ];
 
 // Create lines for links with class and id for targeting
@@ -27,7 +30,7 @@ var node = svg.selectAll(".node")
     .data(nodes)
     .enter().append("circle")
     .attr("class", "node")
-    .attr("r", 10)
+    .attr("r", 25)
     .attr("cx", function(d) { return d.x; })
     .attr("cy", function(d) { return d.y; })
     .on("mouseover", function(event, d) {
@@ -46,3 +49,11 @@ var node = svg.selectAll(".node")
            .style("stroke", "#333")
            .style("stroke-width", "2px");
     });
+
+node.append("text")
+    .attr("dx", function(d) { return d.x; })
+    .attr("dy", function(d) { return d.y + 5; }) // Adjust this value to position the text vertically
+    .attr("text-anchor", "middle") // Centers the text on the node
+    .text(function(d) { return d.id; })
+    .style("fill", "black") // Text color
+    .style("font-size", "12px"); // Text size
