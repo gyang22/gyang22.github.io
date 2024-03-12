@@ -11,7 +11,7 @@ var nodes = [
 
 var links = [
     { source: 1, target: 2 },
-    { source: 1, target: 4 },
+    { source: 3, target: 4 },
     { source: 1, target: 3 },
     { source: 2, target: 3 }
 ];
@@ -54,20 +54,19 @@ node.append("text")
     .style("fill", "black") // Text color
     .style("font-size", "12px"); // Text size
 
-// Existing code for mouseover and mouseout events
-// Ensure these events are attached to the circle, not the group (g) element
-node.selectAll("circle").on("mouseover", function(event, d) {
-    // Highlight connected edges
-    svg.selectAll(".link")
-       .style("stroke", function(link_d) { 
-           return link_d.source === d.id || link_d.target === d.id ? "orange" : "#333"; 
-       })
-       .style("stroke-width", function(link_d) { 
-           return link_d.source === d.id || link_d.target === d.id ? "4px" : "2px"; 
-       });
-}).on("mouseout", function(event, d) {
-    // Revert edge styles
-    svg.selectAll(".link")
-       .style("stroke", "#333")
-       .style("stroke-width", "2px");
-});
+    node.selectAll("circle").on("mouseover", function(event, d) {
+        // Highlight connected edges
+        svg.selectAll(".link")
+           .style("stroke", function(link_d) { 
+               return link_d.source.id === d.id || link_d.target.id === d.id ? "orange" : "#333"; 
+           })
+           .style("stroke-width", function(link_d) { 
+               return link_d.source.id === d.id || link_d.target.id === d.id ? "4px" : "2px"; 
+           });
+    }).on("mouseout", function(event, d) {
+        // Revert edge styles
+        svg.selectAll(".link")
+           .style("stroke", "#333")
+           .style("stroke-width", "2px");
+    });
+    
