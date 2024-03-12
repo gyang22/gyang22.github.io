@@ -6,7 +6,7 @@ var nodes = [
     { id: 1, x: width / 3, y: height / 6 },
     { id: 2, x: 2 * width / 3, y: height / 6 },
     { id: 3, x: width / 2, y: height / 3 },
-    { id: 4, x: width, y: height }
+    { id: 4, x: 3 * width / 4, y: height / 2}
 ];
 
 var links = [
