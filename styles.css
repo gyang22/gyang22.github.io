@@ -41,8 +41,14 @@ nav li a:hover {
 }
 
 .circular-image {
-    width: 200px;
-    height: 200px;
+    width: 180px;
+    height: 180px;
     border-radius: 50%;
     object-fit: cover;
+}
+
+.container {
+    display: flex;
+    align-items: left; 
+    gap: 20px; 
 }
