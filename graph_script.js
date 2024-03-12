@@ -16,14 +16,25 @@ var links = [
     { source: 2, target: 3 }
 ];
 
-// Create lines for links with class and id for targeting
+// Adjust the links data to directly reference the node objects
+links.forEach(function(link) {
+    link.source = nodes.find(node => node.id === link.source);
+    link.target = nodes.find(node => node.id === link.target);
+});
+
+// Now create the lines for links
 var link = svg.selectAll(".link")
     .data(links)
     .enter().append("line")
     .attr("class", "link")
-    .attr("id", function(d) { return "link-" + d.source + "-" + d.target; })
+    .attr("id", function(d) { return "link-" + d.source.id + "-" + d.target.id; })
+    .attr("x1", function(d) { return d.source.x; })
+    .attr("y1", function(d) { return d.source.y; })
+    .attr("x2", function(d) { return d.target.x; })
+    .attr("y2", function(d) { return d.target.y; })
     .style("stroke", "#333")
     .style("stroke-width", "2px");
+
 
 var node = svg.selectAll(".node")
     .data(nodes)
