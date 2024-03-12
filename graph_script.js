@@ -25,30 +25,15 @@ var link = svg.selectAll(".link")
     .style("stroke", "#333")
     .style("stroke-width", "2px");
 
-// Create circles for nodes
 var node = svg.selectAll(".node")
     .data(nodes)
-    .enter().append("circle")
+    .enter().append("g");  // Create a group element for each node
+
+node.append("circle")
     .attr("class", "node")
-    .attr("r", 25)
+    .attr("r", 25)  // Node radius
     .attr("cx", function(d) { return d.x; })
-    .attr("cy", function(d) { return d.y; })
-    .on("mouseover", function(event, d) {
-        // Highlight connected edges
-        svg.selectAll(".link")
-           .style("stroke", function(link_d) { 
-               return link_d.source === d.id || link_d.target === d.id ? "orange" : "#333"; 
-           })
-           .style("stroke-width", function(link_d) { 
-               return link_d.source === d.id || link_d.target === d.id ? "4px" : "2px"; 
-           });
-    })
-    .on("mouseout", function(event, d) {
-        // Revert edge styles
-        svg.selectAll(".link")
-           .style("stroke", "#333")
-           .style("stroke-width", "2px");
-    });
+    .attr("cy", function(d) { return d.y; });
 
 node.append("text")
     .attr("dx", function(d) { return d.x; })
@@ -57,3 +42,21 @@ node.append("text")
     .text(function(d) { return d.id; })
     .style("fill", "black") // Text color
     .style("font-size", "12px"); // Text size
+
+// Existing code for mouseover and mouseout events
+// Ensure these events are attached to the circle, not the group (g) element
+node.selectAll("circle").on("mouseover", function(event, d) {
+    // Highlight connected edges
+    svg.selectAll(".link")
+       .style("stroke", function(link_d) { 
+           return link_d.source === d.id || link_d.target === d.id ? "orange" : "#333"; 
+       })
+       .style("stroke-width", function(link_d) { 
+           return link_d.source === d.id || link_d.target === d.id ? "4px" : "2px"; 
+       });
+}).on("mouseout", function(event, d) {
+    // Revert edge styles
+    svg.selectAll(".link")
+       .style("stroke", "#333")
+       .style("stroke-width", "2px");
+});
