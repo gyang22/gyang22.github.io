@@ -1,3 +1,5 @@
+import * as THREE from './path/to/three.module.js';
+
 var renderer = new THREE.WebGLRenderer();
 renderer.setClearColor(0xCCCCCC); // Set clear color before setting size
 var container = document.getElementById('point-cloud-renderer');
