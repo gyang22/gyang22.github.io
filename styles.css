@@ -97,3 +97,14 @@ nav li a:hover {
 .node:hover {
     fill: orange;
 }
+
+.project-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+#point-cloud-renderer {
+    width: 400px; /* Adjust based on your preference */
+    height: 300px; /* Adjust based on your preference */
+    margin-right: 20px; /* Adds some space between the 3D canvas and the text */
+}
