@@ -1,4 +1,4 @@
-import * as THREE from 'https://threejs.org/build/three.module.js';
+import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.137.0/build/three.module.js';
 
 var renderer = new THREE.WebGLRenderer();
 renderer.setClearColor(0xCCCCCC); // Set clear color before setting size
