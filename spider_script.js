@@ -8,8 +8,9 @@ camera.lookAt(0, 0, 0);
 
 // Renderer
 var renderer = new THREE.WebGLRenderer();
+var container = document.getElementById('point-cloud-renderer');
+renderer.setSize(container.clientWidth, container.clientHeight);
 renderer.setClearColor(0xCCCCCC);
-renderer.setSize(window.innerWidth, window.innerHeight);
 document.getElementById('point-cloud-renderer').appendChild(renderer.domElement);
 
 // Cube
@@ -24,3 +25,5 @@ var animate = function () {
     renderer.render(scene, camera);
 };
 animate();
+
+

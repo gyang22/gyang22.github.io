@@ -112,7 +112,6 @@ nav li a:hover {
 }
 
 #point-cloud-renderer {
-    width: 400px; /* Adjust based on your preference */
-    height: 300px; /* Adjust based on your preference */
-    margin-left: 20px; /* Adds some space between the text and the 3D canvas */
+    background-color: #ff0000; /* Red background to make it visible */
 }
+
