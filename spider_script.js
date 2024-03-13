@@ -17,6 +17,7 @@ camera.lookAt(scene.position); // Look at the center of the scene
 var animate = function () {
     requestAnimationFrame(animate);
     renderer.render(scene, camera);
+    console.log
 };
 
 animate();
