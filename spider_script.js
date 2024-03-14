@@ -18,7 +18,7 @@ if (container) {
     var cube = new THREE.Mesh(geometry, material);
     scene.add(cube);
 
-    const controls = new OrbitControls(camera, renderer.domElement);
+    // const controls = new OrbitControls(camera, renderer.domElement);
 
     var animate = function () {
         requestAnimationFrame(animate);
@@ -28,7 +28,7 @@ if (container) {
         cube.rotation.y += 0.01;
     
         // Required if controls.enableDamping or controls.autoRotate are set to true
-        controls.update();  
+        // controls.update();  
     
         renderer.render(scene, camera);
     };
