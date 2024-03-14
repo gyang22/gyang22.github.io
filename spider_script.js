@@ -1,5 +1,5 @@
 import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.137.0/build/three.module.js';
-import PCDLoader from 'https://cdn.jsdelivr.net/npm/three@0.137.0/examples/jsm/loaders/PCDLoader.js';
+import { PCDLoader } from 'https://cdn.jsdelivr.net/npm/three/addons/loaders/PCDLoader.js';
 
 var container = document.getElementById('point-cloud-renderer');
 
