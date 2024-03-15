@@ -11,7 +11,7 @@ if (container) {
     var camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
     
     // Set the camera position farther back to fit the object
-    camera.position.set(0, 5, 15); // You may need to adjust this value depending on the size of your object
+    camera.position.set(0, 30, 45); // You may need to adjust this value depending on the size of your object
     camera.lookAt(new THREE.Vector3(0, 0, 0)); // Camera now looks at the origin
 
     var renderer = new THREE.WebGLRenderer({ antialias: true });
