@@ -24,7 +24,7 @@ if (container) {
         points.geometry.center(); // Center the point cloud geometry
 
         // After the geometry is centered, set the camera position
-        camera.position.set(0, 5, 15); // Adjust camera position
+        camera.position.set(0, 100, 100); // Adjust camera position
         camera.lookAt(points.geometry.boundingSphere.center); // Look at the center of the point cloud
 
         animate();
