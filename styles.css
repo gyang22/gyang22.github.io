@@ -112,8 +112,8 @@ nav li a:hover {
 }
 
 #point-cloud-renderer {
-    width: 400px;  /* Adjust the width as needed */
-    height: 300px; /* Adjust the height as needed */
+    width: 500px;  /* Adjust the width as needed */
+    height: 400px; /* Adjust the height as needed */
     background-color: white; /* Temporary to visualize the div */
 }
 
