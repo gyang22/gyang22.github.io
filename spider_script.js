@@ -18,6 +18,7 @@ if (container) {
     loader.load('test_web.pcd', function (points) {
         points.material.color.setHex(0xff0000); // Change points color to red
         scene.add(points);
+        points.scale.set(0.1, 0.1, 0.1)
         points.geometry.center(); // Center the geometry
 
         var center = points.geometry.boundingSphere.center;
