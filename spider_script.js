@@ -1,8 +1,5 @@
-// Import Three.js from a CDN
-import * as THREE from 'three';
 
-// Import PCDLoader.js from a CDN
-import { PCDLoader } from 'three/addons/loaders/PCDLoader.js';
+import { PCDLoader } from './node_modules/three/addons/loaders/PCDLoader.js';
 
 
 var container = document.getElementById('point-cloud-renderer');

@@ -1,10 +1,31 @@
 const path = require('path');
 
 module.exports = {
-  entry: 'spider_script.js', // Path to your main JS file
+  // Assuming your spider_script.js is in the root, if not adjust the path
+  entry: './spider_script.js', // Entry should be a relative path
   output: {
-    filename: 'bundle.js', // Output bundle file name
-    path: path.resolve(__dirname, 'dist'), // Output path
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'dist'),
+    // This is necessary for webpack-dev-server
+    publicPath: '/dist/', 
   },
-  mode: 'development', // Use 'production' for production builds
+  // Resolve .js extensions so you can leave them off when importing
+  resolve: {
+    extensions: ['.js'],
+  },
+  module: {
+    rules: [
+      // JavaScript: Use Babel to transpile JavaScript files
+      { test: /\.js$/, exclude: /node_modules/, use: ['babel-loader'] },
+    ],
+  },
+  mode: 'development',
+  // Optional: Configure the webpack-dev-server
+  devServer: {
+    static: path.join(__dirname, 'dist'),
+    compress: true,
+    port: 9000,
+  },
+  // Source maps for debugging
+  devtool: 'eval-source-map',
 };
