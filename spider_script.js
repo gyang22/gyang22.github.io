@@ -15,7 +15,7 @@ if (container) {
     container.appendChild(renderer.domElement);
 
     var loader = new PCDLoader();
-    loader.load('test_web.pcd', function (points) {
+    loader.load('2024-04-20 19-18-48.pcd copy.pcd', function (points) {
         points.material.color.setHex(0xff0000); // Change points color to red
         scene.add(points);
         points.scale.set(0.1, 0.1, 0.1)
