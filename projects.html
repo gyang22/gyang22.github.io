@@ -5,6 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grant Yang Projects</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
+    <style>
+        .page-holder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .project-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            width: 80%;
+            margin-bottom: 20px;
+        }
+        .text-content {
+            width: 60%;
+        }
+        #point-cloud-renderer {
+            width: 35%;
+            height: 400px; /* Adjust height as needed */
+        }
+    </style>
 </head>
 <body style="background-color: white">
     <nav>
@@ -28,43 +49,7 @@
                     <p>Skeletonization process done with line recognition algorithm.</p>
                     <p>Working with <a href="https://math.berkeley.edu/people/faculty/norman-sheu">Norman Sheu</a> and others.</p>
                 </div>
-                <div id="point-cloud-renderer">
-                    <body>
-                        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-                        <script src="https://threejs.org/examples/js/loaders/PCDLoader.js"></script>
-                        <script>
-                          let scene, camera, renderer;
-                      
-                          function init() {
-                            scene = new THREE.Scene();
-                            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-                            renderer = new THREE.WebGLRenderer();
-                            renderer.setSize(window.innerWidth, window.innerHeight);
-                            document.body.appendChild(renderer.domElement);
-                      
-                            const loader = new THREE.PCDLoader();
-                            loader.load('2024-05-25 17-27-41.pcd', function (points) {
-                              scene.add(points);
-                              camera.position.set(0, 0, 1);
-                              animate();
-                            });
-                          }
-                      
-                          function animate() {
-                            requestAnimationFrame(animate);
-                            renderer.render(scene, camera);
-                          }
-                      
-                          init();
-                      
-                          window.addEventListener('resize', function () {
-                            camera.aspect = window.innerWidth / window.innerHeight;
-                            camera.updateProjectionMatrix();
-                            renderer.setSize(window.innerWidth, window.innerHeight);
-                          });
-                        </script>
-                      </body>
-                </div> <!-- Container for the 3D point cloud -->
+                <div id="point-cloud-renderer"></div>
             </div>
             <div class="project-wrapper">
                 <div class="text-content">
@@ -76,10 +61,38 @@
         </section>
     </div>
 
-    <!-- <script src="dist/bundle.js"></script> -->
-    <!-- <script type="module" src="spider_script.js"></script> -->
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://threejs.org/examples/js/loaders/PCDLoader.js"></script>
+    <script>
+      let scene, camera, renderer;
+  
+      function init() {
+        scene = new THREE.Scene();
+        camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        renderer = new THREE.WebGLRenderer();
+        renderer.setSize(document.getElementById('point-cloud-renderer').clientWidth, document.getElementById('point-cloud-renderer').clientHeight);
+        document.getElementById('point-cloud-renderer').appendChild(renderer.domElement);
+  
+        const loader = new THREE.PCDLoader();
+        loader.load('2024-05-25 17-27-41.pcd', function (points) {
+          scene.add(points);
+          camera.position.set(0, 0, 1);
+          animate();
+        });
+      }
+  
+      function animate() {
+        requestAnimationFrame(animate);
+        renderer.render(scene, camera);
+      }
+  
+      init();
+  
+      window.addEventListener('resize', function () {
+        camera.aspect = document.getElementById('point-cloud-renderer').clientWidth / document.getElementById('point-cloud-renderer').clientHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(document.getElementById('point-cloud-renderer').clientWidth, document.getElementById('point-cloud-renderer').clientHeight);
+      });
+    </script>
 </body>
 </html>
-
-
