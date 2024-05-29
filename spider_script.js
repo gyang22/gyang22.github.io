@@ -50,6 +50,7 @@ if (container) {
         points.geometry.center(); // Center the geometry
 
         var center = points.geometry.boundingSphere.center;
+        const initialCameraPosition = { x: center.x, y: center.y + 500, z: center.z + 1500 };
         camera.position.set(center.x, center.y + 500, center.z + 1500); // Adjust the camera position
         camera.lookAt(center); // Camera now looks at the center of the point cloud
 
