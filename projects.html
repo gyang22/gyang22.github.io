@@ -5,28 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grant Yang Projects</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
-    <style>
-        .page-holder {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .project-wrapper {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            width: 80%;
-            margin-bottom: 20px;
-        }
-        .text-content {
-            width: 60%;
-        }
-        #point-cloud-renderer {
-            width: 35%;
-            height: 600px; /* Adjust height as needed */
-            background-color: #000; /* Add background color to see the container */
-        }
-    </style>
 </head>
 <body style="background-color: white">
     <nav>
@@ -83,11 +61,11 @@
             loader.load('2024-05-25 17-27-41.pcd', function (points) {
                 points.material.color.setHex(0xff0000); // Change points color to red
                 scene.add(points);
-                points.scale.set(0.1, 0.1, 0.1);
+                points.scale.set(1, 1, 1); // Set scale to 1, 1, 1 to ensure proper scaling
                 points.geometry.center(); // Center the geometry
 
                 var center = points.geometry.boundingSphere.center;
-                camera.position.set(center.x, center.y + 200, center.z + 800); // Adjust the camera position
+                camera.position.set(center.x, center.y + 500, center.z + 1500); // Adjust the camera position
                 camera.lookAt(center); // Camera now looks at the center of the point cloud
 
                 animate();
@@ -96,7 +74,7 @@
             var animate = function () {
                 requestAnimationFrame(animate);
 
-                scene.rotation.y += 0.005; // Rotate the scene around the Y-axis
+                scene.rotation.y += 0.01; // Rotate the scene around the Y-axis
 
                 renderer.render(scene, camera);
             };
