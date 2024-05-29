@@ -65,31 +65,43 @@
     <script src="https://threejs.org/examples/js/loaders/PCDLoader.js"></script>
     <script>
       let scene, camera, renderer;
-  
+
       function init() {
         scene = new THREE.Scene();
-        camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const aspectRatio = document.getElementById('point-cloud-renderer').clientWidth / document.getElementById('point-cloud-renderer').clientHeight;
+        camera = new THREE.PerspectiveCamera(75, aspectRatio, 0.1, 10000);
+
         renderer = new THREE.WebGLRenderer();
         renderer.setSize(document.getElementById('point-cloud-renderer').clientWidth, document.getElementById('point-cloud-renderer').clientHeight);
         document.getElementById('point-cloud-renderer').appendChild(renderer.domElement);
-  
+
         const loader = new THREE.PCDLoader();
         loader.load('2024-05-25 17-27-41.pcd', function (points) {
           scene.add(points);
-          camera.position.set(0, 0, 1);
+          
+          // Center of the bounding box
+          const centerX = 960;
+          const centerY = 540;
+          const centerZ = 960;
+
+          // Position the camera to get a good overview of the bounding box
+          camera.position.set(centerX, centerY, 3000); // Adjust distance as needed
+          camera.lookAt(new THREE.Vector3(centerX, centerY, centerZ));
+
           animate();
         });
       }
-  
+
       function animate() {
         requestAnimationFrame(animate);
         renderer.render(scene, camera);
       }
-  
+
       init();
-  
+
       window.addEventListener('resize', function () {
-        camera.aspect = document.getElementById('point-cloud-renderer').clientWidth / document.getElementById('point-cloud-renderer').clientHeight;
+        const aspectRatio = document.getElementById('point-cloud-renderer').clientWidth / document.getElementById('point-cloud-renderer').clientHeight;
+        camera.aspect = aspectRatio;
         camera.updateProjectionMatrix();
         renderer.setSize(document.getElementById('point-cloud-renderer').clientWidth, document.getElementById('point-cloud-renderer').clientHeight);
       });
