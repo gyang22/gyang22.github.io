@@ -87,7 +87,7 @@
                 points.geometry.center(); // Center the geometry
 
                 var center = points.geometry.boundingSphere.center;
-                camera.position.set(center.x, center.y + 100, center.z + 500); // Adjust the camera position
+                camera.position.set(center.x, center.y + 200, center.z + 800); // Adjust the camera position
                 camera.lookAt(center); // Camera now looks at the center of the point cloud
 
                 animate();
@@ -96,7 +96,7 @@
             var animate = function () {
                 requestAnimationFrame(animate);
 
-                scene.rotation.y += 0.01; // Rotate the scene around the Y-axis
+                scene.rotation.y += 0.005; // Rotate the scene around the Y-axis
 
                 renderer.render(scene, camera);
             };
