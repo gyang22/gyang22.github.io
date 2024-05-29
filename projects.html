@@ -81,7 +81,7 @@
 
             var loader = new PCDLoader();
             loader.load('2024-05-25 17-27-41.pcd', function (points) {
-                points.material.color.setHex(0xffffff); // Change points color to red
+                points.material.color.setHex(0xff0000); // Change points color to red
                 scene.add(points);
                 points.scale.set(0.1, 0.1, 0.1);
                 points.geometry.center(); // Center the geometry
