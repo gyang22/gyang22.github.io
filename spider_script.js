@@ -70,17 +70,17 @@ if (container) {
             userInteractionTimeout = setTimeout(function () {
                 isUserInteracting = false;
                 new TWEEN.Tween(camera.position)
-                    .to(initialCameraPosition, 2000) // Move back to the initial position over 2 seconds
+                    .to(initialCameraPosition, 3000) // Move back to the initial position over 2 seconds
                     .easing(TWEEN.Easing.Quadratic.Out) // Easing function
                     .start();
-            }, 3000);
+            }, 4000);
         });
 
         var animate = function () {
             requestAnimationFrame(animate);
 
             if (!isUserInteracting) {
-                scene.rotation.y += 0.01; // Rotate the scene around the Y-axis
+                scene.rotation.y += 0.005; // Rotate the scene around the Y-axis
             }
 
             TWEEN.update(); // Update TWEEN animations
