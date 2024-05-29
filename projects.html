@@ -23,7 +23,7 @@
         }
         #point-cloud-renderer {
             width: 35%;
-            height: 400px; /* Adjust height as needed */
+            height: 600px; /* Adjust height as needed */
             background-color: #000; /* Add background color to see the container */
         }
     </style>
@@ -72,7 +72,7 @@
             var scene = new THREE.Scene();
             scene.background = new THREE.Color(0xffffff); // Set the background to white
 
-            var camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
+            var camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 10000);
             
             var renderer = new THREE.WebGLRenderer({ antialias: true });
             renderer.setClearColor(0xffffff); // Set renderer clear color to white
@@ -81,13 +81,13 @@
 
             var loader = new PCDLoader();
             loader.load('2024-05-25 17-27-41.pcd', function (points) {
-                points.material.color.setHex(0xff0000); // Change points color to red
+                points.material.color.setHex(0xffffff); // Change points color to red
                 scene.add(points);
-                points.scale.set(0.1, 0.1, 0.1)
+                points.scale.set(0.1, 0.1, 0.1);
                 points.geometry.center(); // Center the geometry
 
                 var center = points.geometry.boundingSphere.center;
-                camera.position.set(center.x, center.y + 5, center.z + 15); // Adjust the camera position
+                camera.position.set(center.x, center.y + 100, center.z + 500); // Adjust the camera position
                 camera.lookAt(center); // Camera now looks at the center of the point cloud
 
                 animate();
@@ -102,6 +102,13 @@
             };
 
             animate(); // Start the animation loop
+
+            window.addEventListener('resize', function () {
+                const aspectRatio = container.clientWidth / container.clientHeight;
+                camera.aspect = aspectRatio;
+                camera.updateProjectionMatrix();
+                renderer.setSize(container.clientWidth, container.clientHeight);
+            });
         }
     </script>
 </body>
