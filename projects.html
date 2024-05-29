@@ -28,7 +28,43 @@
                     <p>Skeletonization process done with line recognition algorithm.</p>
                     <p>Working with <a href="https://math.berkeley.edu/people/faculty/norman-sheu">Norman Sheu</a> and others.</p>
                 </div>
-                <div id="point-cloud-renderer"></div> <!-- Container for the 3D point cloud -->
+                <div id="point-cloud-renderer">
+                    <body>
+                        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+                        <script src="https://threejs.org/examples/js/loaders/PCDLoader.js"></script>
+                        <script>
+                          let scene, camera, renderer;
+                      
+                          function init() {
+                            scene = new THREE.Scene();
+                            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+                            renderer = new THREE.WebGLRenderer();
+                            renderer.setSize(window.innerWidth, window.innerHeight);
+                            document.body.appendChild(renderer.domElement);
+                      
+                            const loader = new THREE.PCDLoader();
+                            loader.load('2024-05-25 17-27-41.pcd', function (points) {
+                              scene.add(points);
+                              camera.position.set(0, 0, 1);
+                              animate();
+                            });
+                          }
+                      
+                          function animate() {
+                            requestAnimationFrame(animate);
+                            renderer.render(scene, camera);
+                          }
+                      
+                          init();
+                      
+                          window.addEventListener('resize', function () {
+                            camera.aspect = window.innerWidth / window.innerHeight;
+                            camera.updateProjectionMatrix();
+                            renderer.setSize(window.innerWidth, window.innerHeight);
+                          });
+                        </script>
+                      </body>
+                </div> <!-- Container for the 3D point cloud -->
             </div>
             <div class="project-wrapper">
                 <div class="text-content">
@@ -40,8 +76,10 @@
         </section>
     </div>
 
-    <script src="dist/bundle.js"></script>
-    <script type="module" src="spider_script.js"></script>
+    <!-- <script src="dist/bundle.js"></script> -->
+    <!-- <script type="module" src="spider_script.js"></script> -->
     
 </body>
 </html>
+
+
