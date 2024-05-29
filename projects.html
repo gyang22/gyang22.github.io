@@ -63,10 +63,8 @@
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://threejs.org/examples/jsm/loaders/PCDLoader.js"></script>
-    <script type="module">
-        import { PCDLoader } from 'https://threejs.org/examples/jsm/loaders/PCDLoader.js';
-
+    <script src="https://threejs.org/examples/js/loaders/PCDLoader.js"></script>
+    <script>
         let scene, camera, renderer;
 
         function init() {
@@ -78,7 +76,7 @@
             renderer.setSize(document.getElementById('point-cloud-renderer').clientWidth, document.getElementById('point-cloud-renderer').clientHeight);
             document.getElementById('point-cloud-renderer').appendChild(renderer.domElement);
 
-            const loader = new PCDLoader();
+            const loader = new THREE.PCDLoader();
             loader.load('2024-05-25 17-27-41.pcd', function (points) {
                 console.log('Point cloud loaded:', points); // Debug line
                 scene.add(points);
