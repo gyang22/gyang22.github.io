@@ -59,9 +59,31 @@
 
             var loader = new PCDLoader();
             loader.load('2024-05-25 17-27-41.pcd', function (points) {
-                points.material.color.setHex(0xff0000); // Change points color to red
+                // Get the bounding box to determine height range
+                points.geometry.computeBoundingBox();
+                const boundingBox = points.geometry.boundingBox;
+                const minY = boundingBox.min.y;
+                const maxY = boundingBox.max.y;
+
+                // Create a color array based on height
+                const colors = new Float32Array(points.geometry.attributes.position.count * 3);
+                for (let i = 0; i < points.geometry.attributes.position.count; i++) {
+                    const y = points.geometry.attributes.position.getY(i);
+                    const t = (y - minY) / (maxY - minY);
+                    const color = new THREE.Color();
+                    color.setHSL(t * 0.7, 1.0, 0.5); // Adjust the gradient color range as needed
+
+                    colors[i * 3] = color.r;
+                    colors[i * 3 + 1] = color.g;
+                    colors[i * 3 + 2] = color.b;
+                }
+
+                // Set the color attribute for the geometry
+                points.geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+                points.material = new THREE.PointsMaterial({ size: 0.05, vertexColors: true });
+
                 scene.add(points);
-                points.scale.set(1.5, 1.5, 1.5); // Set scale to 1, 1, 1 to ensure proper scaling
+                points.scale.set(1.6, 1.6, 1.6); // Set scale to 1, 1, 1 to ensure proper scaling
                 points.geometry.center(); // Center the geometry
 
                 var center = points.geometry.boundingSphere.center;
@@ -74,7 +96,7 @@
             var animate = function () {
                 requestAnimationFrame(animate);
 
-                scene.rotation.y += 0.01; // Rotate the scene around the Y-axis
+                scene.rotation.y += 0.005; // Rotate the scene around the Y-axis
 
                 renderer.render(scene, camera);
             };
