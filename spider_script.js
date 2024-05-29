@@ -3,6 +3,7 @@
 import * as THREE from 'https://cdn.skypack.dev/three@0.128.0';
 import { PCDLoader } from 'https://cdn.skypack.dev/three@0.128.0/examples/jsm/loaders/PCDLoader.js';
 import { OrbitControls } from 'https://cdn.skypack.dev/three@0.128.0/examples/jsm/controls/OrbitControls.js';
+import { TWEEN } from 'https://cdn.skypack.dev/@tweenjs/tween.js';
 
 var container = document.getElementById('point-cloud-renderer');
 
@@ -69,28 +70,26 @@ if (container) {
     controls.addEventListener('end', function () {
         userInteractionTimeout = setTimeout(function () {
             isUserInteracting = false;
+            new TWEEN.Tween(camera.position)
+                .to(initialCameraPosition, 2000) // Move back to the initial position over 2 seconds
+                .easing(TWEEN.Easing.Quadratic.Out) // Easing function
+                .start();
         }, 3000);
     });
 
     var animate = function () {
         requestAnimationFrame(animate);
 
-        controls.update(); // Required if controls.enableDamping or controls.autoRotate are set to true
-
-        renderer.render(scene, camera);
-    };
-
-    var animate = function () {
-        requestAnimationFrame(animate);
-
         if (!isUserInteracting) {
-            scene.rotation.y += 0.003; // Rotate the scene around the Y-axis
+            scene.rotation.y += 0.01; // Rotate the scene around the Y-axis
         }
 
+        TWEEN.update(); // Update TWEEN animations
         controls.update(); // Required if controls.enableDamping or controls.autoRotate are set to true
 
         renderer.render(scene, camera);
     };
+
 
     animate(); // Start the animation loop
 
