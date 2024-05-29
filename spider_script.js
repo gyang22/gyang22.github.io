@@ -3,7 +3,7 @@
 import * as THREE from 'https://cdn.skypack.dev/three@0.128.0';
 import { PCDLoader } from 'https://cdn.skypack.dev/three@0.128.0/examples/jsm/loaders/PCDLoader.js';
 import { OrbitControls } from 'https://cdn.skypack.dev/three@0.128.0/examples/jsm/controls/OrbitControls.js';
-import { TWEEN } from 'https://cdn.skypack.dev/@tweenjs/tween.js';
+
 
 var container = document.getElementById('point-cloud-renderer');
 
