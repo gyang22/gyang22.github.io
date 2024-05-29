@@ -58,8 +58,34 @@ if (container) {
         animate();
     });
 
+    var isUserInteracting = false;
+    var userInteractionTimeout;
+
+    controls.addEventListener('start', function () {
+        isUserInteracting = true;
+        clearTimeout(userInteractionTimeout);
+    });
+
+    controls.addEventListener('end', function () {
+        userInteractionTimeout = setTimeout(function () {
+            isUserInteracting = false;
+        }, 3000);
+    });
+
     var animate = function () {
         requestAnimationFrame(animate);
+
+        controls.update(); // Required if controls.enableDamping or controls.autoRotate are set to true
+
+        renderer.render(scene, camera);
+    };
+
+    var animate = function () {
+        requestAnimationFrame(animate);
+
+        if (!isUserInteracting) {
+            scene.rotation.y += 0.003; // Rotate the scene around the Y-axis
+        }
 
         controls.update(); // Required if controls.enableDamping or controls.autoRotate are set to true
 
