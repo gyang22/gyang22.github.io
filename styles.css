@@ -122,3 +122,16 @@ iframe {
     height: calc(100vh - 60px); /* Adjust height to fit within viewport minus nav height */
     border: none;
 }
+
+.iframe-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: calc(100vh - 60px); /* Adjust height to fit within viewport minus nav height */
+}
+
+.iframe-wrapper {
+    width: 100%;
+    height: 100%;
+}
