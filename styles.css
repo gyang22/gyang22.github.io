@@ -124,11 +124,12 @@ iframe {
 }
 
 .iframe-container {
+    flex-grow: 1;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: calc(100vh - 60px); /* Adjust height to fit within viewport minus nav height */
+    box-sizing: border-box;
 }
 
 .iframe-wrapper {
